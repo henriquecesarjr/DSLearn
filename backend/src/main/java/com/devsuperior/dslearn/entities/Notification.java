@@ -16,7 +16,7 @@ public class Notification {
 
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant moment;
-    private boolean read = false;
+    private boolean read;
     private String route;
 
     @ManyToOne
@@ -26,12 +26,13 @@ public class Notification {
     public Notification() {
     }
 
-    public Notification(Long id, String text, Instant moment, boolean read, String route) {
+    public Notification(Long id, String text, Instant moment, boolean read, String route, User user) {
         this.id = id;
         this.text = text;
         this.moment = moment;
         this.read = read;
         this.route = route;
+        this.user = user;
     }
 
     public Long getId() {
@@ -72,6 +73,14 @@ public class Notification {
 
     public void setRoute(String route) {
         this.route = route;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
